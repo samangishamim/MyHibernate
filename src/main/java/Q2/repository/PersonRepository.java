@@ -36,7 +36,7 @@ public class PersonRepository {
     public List<Person> findAll() {
         Session currentSession = sessionFactory.openSession();
         Transaction transaction = currentSession.beginTransaction();
-        String sql="from Person";
+        String sql="from person";
         Query<Person> fromFilm = currentSession.createQuery(sql, Person.class);
         List<Person> listOfFilm = fromFilm.list();
         transaction.commit();
@@ -45,7 +45,14 @@ public class PersonRepository {
     }
 
 
-
+    public void remove(Person person) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.remove(person);
+        transaction.commit();
+        session.close();
     }
+
+
 
 }
