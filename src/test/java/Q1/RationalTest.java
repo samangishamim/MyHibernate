@@ -24,6 +24,10 @@ class RationalTest {
 
     @Test
     void testMul() {
+        Rational r1 = new Rational(2, 3);
+        Rational r2 = new Rational(3, 4);
+        Rational result = r1.mul(r2);
+        assertEquals("1/2", result.toString());
     }
 
     @Test
