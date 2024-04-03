@@ -53,6 +53,12 @@ public class PersonRepository {
         session.close();
     }
 
-
+    public void update(Person person) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(Person);
+        transaction.commit();
+        session.close();
+    }
 
 }
