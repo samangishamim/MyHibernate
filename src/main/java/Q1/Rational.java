@@ -34,7 +34,9 @@ public class Rational {
         int lcm = lcm(this.denominator, num.denominator);
         int n1 = this.numerator * (lcm / this.denominator);
         int n2 = num.numerator * (lcm / num.denominator);
-        return new Rational(n1 - n2, lcm);
+        Rational result = new Rational(n1 - n2, lcm);
+        result.simplify();
+        return result;
     }
 
     public Rational mul(Rational num) {
