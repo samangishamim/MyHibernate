@@ -4,6 +4,7 @@ public class Rational {
 
     private int numerator;
     private int denominator;
+    private boolean divideByZero;
 
     public Rational(int numerator, int denominator) {
         this.numerator = numerator;
@@ -13,6 +14,14 @@ public class Rational {
     public Rational() {
         this.numerator = 0;
         this.denominator = 1;
+    }
+
+    public boolean isDivideByZero() {
+        return divideByZero;
+    }
+
+    public void setDivideByZero(boolean divideByZero) {
+        this.divideByZero = divideByZero;
     }
 
     public int getNumerator() {
@@ -79,12 +88,15 @@ public class Rational {
         System.out.println(n + " + " + r + " / " + this.denominator);
     }
 
-    private int gcd(int a, int b) {
+    public int gcd(int a, int b) {
         if (b == 0) {
+            divideByZero = true;
+            System.out.println(" divide by zero ");
             return a;
         }
         return gcd(b, a % b);
     }
+
     public void simplify() {
         int gcd = gcd(Math.abs(numerator), denominator);
         numerator /= gcd;
@@ -95,4 +107,6 @@ public class Rational {
     private int lcm(int a, int b) {
         return a * b / gcd(a, b);
     }
+
+
 }

@@ -1,9 +1,38 @@
 package Q1;
 
+import org.checkerframework.checker.units.qual.N;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RationalTest {
+
+
+    @Test
+    void test_getter(){
+        Rational r1=new Rational(1,2);
+        assertEquals(1,r1.getNumerator());
+        assertEquals(2,r1.getDenominator());
+    }
+
+    @Nested
+    class gcdTest {
+        @Test
+        void test_gcdTest_divideByZero() {
+            Rational r1 = new Rational(1, 0);
+            assertEquals(1, r1.gcd(1, 0));
+            assertTrue(r1.isDivideByZero());
+        }
+
+        @Test
+        void test_gcdTest_normalCase() {
+            Rational r1 = new Rational(1, 2);
+             r1.simplify();
+            assertEquals("1/2", r1.toString());
+            assertFalse(r1.isDivideByZero());
+        }
+    }
 
     @Test
     void testAdd() {
