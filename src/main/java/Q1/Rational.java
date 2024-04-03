@@ -40,7 +40,9 @@ public class Rational {
     public Rational mul(Rational num) {
         int n = this.numerator * num.numerator;
         int d = this.denominator * num.denominator;
-        return new Rational(n, d);
+        Rational result = new Rational(n, d);
+        result.simplify();
+        return result;
     }
 
     public Rational div(Rational num) {
