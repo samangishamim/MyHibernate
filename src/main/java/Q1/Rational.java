@@ -81,6 +81,12 @@ public class Rational {
         }
         return gcd(b, a % b);
     }
+    public void simplify() {
+        int gcd = gcd(Math.abs(numerator), denominator);
+        numerator /= gcd;
+        denominator /= gcd;
+    }
+
 
     private int lcm(int a, int b) {
         return a * b / gcd(a, b);
