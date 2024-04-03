@@ -56,7 +56,7 @@ public class PersonRepository {
     public void update(Person person) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.merge(Person);
+        session.merge(person);
         transaction.commit();
         session.close();
     }
