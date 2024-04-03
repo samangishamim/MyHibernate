@@ -8,6 +8,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonRepository {
     private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
@@ -17,15 +21,31 @@ public class PersonRepository {
         Transaction transaction = currentSession.beginTransaction();
         currentSession.persist(person);
         transaction.commit();
-        sessionFactory.close();
+        currentSession.close();
     }
 
-    public Person findById(Long id){
+    public Person findById(Long id) {
         Session currentSession = sessionFactory.openSession();
         Transaction transaction = currentSession.beginTransaction();
-        Person person = currentSession.find(Person.class, id);
+        Person person = currentSession.get(Person.class, id);
         transaction.commit();
         sessionFactory.close();
         return person;
     }
+
+    public List<Person> findAll() {
+        Session currentSession = sessionFactory.openSession();
+        Transaction transaction = currentSession.beginTransaction();
+        String sql="from Person";
+        Query<Person> fromFilm = currentSession.createQuery(sql, Person.class);
+        List<Person> listOfFilm = fromFilm.list();
+        transaction.commit();
+        currentSession.close();
+        return listOfFilm;
+    }
+
+
+
+    }
+
 }
