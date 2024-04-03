@@ -32,6 +32,10 @@ class RationalTest {
 
     @Test
     void testDiv() {
+        Rational r1 = new Rational(1, 2);
+        Rational r2 = new Rational(1, 3);
+        Rational result = r1.div(r2);
+        assertEquals("3/2", result.toString());
     }
 
     @Test
