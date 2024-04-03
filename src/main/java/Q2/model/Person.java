@@ -30,4 +30,8 @@ public class Person {
         this.familyName = familyName;
         this.birthdate = birthdate;
     }
+
+    public Person(Long id) {
+
+    }
 }
