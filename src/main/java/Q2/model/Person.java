@@ -4,28 +4,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
+
+@Entity
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String familyName;
-    private Date birthdate;
+    private Integer birthdate;
 
-    public Person(String name, String familyName, Date birthdate) {
+    public Person(String name, String familyName,Integer birthdate) {
         this.name = name;
         this.familyName = familyName;
         this.birthdate = birthdate;
