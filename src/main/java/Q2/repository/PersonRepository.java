@@ -1,5 +1,6 @@
 package Q2.repository;
 
+import Q2.connection.SessionFactorySingleton;
 import Q2.model.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,21 +10,22 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class PersonRepository {
+    private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
 
-    StandardServiceRegistry build=new StandardServiceRegistryBuilder()
-            .configure()
-            .build();
-
-    SessionFactory sessionFactory=new MetadataSources(build)
-            .addAnnotatedClass(Person.class)
-            .buildMetadata().buildSessionFactory();
-
-
-    public void save(Person person){
-        Session session= sessionFactory.openSession();
-        Transaction transaction= session.beginTransaction();
-        session.persist(person);
+    public void save(Person person) {
+        Session currentSession = sessionFactory.openSession();
+        Transaction transaction = currentSession.beginTransaction();
+        currentSession.persist(person);
         transaction.commit();
-        session.close();
+        sessionFactory.close();
+    }
+
+    public Person findById(Long id){
+        Session currentSession = sessionFactory.openSession();
+        Transaction transaction = currentSession.beginTransaction();
+        Person person = currentSession.find(Person.class, id);
+        transaction.commit();
+        sessionFactory.close();
+        return person;
     }
 }
