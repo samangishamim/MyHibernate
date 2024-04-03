@@ -16,7 +16,10 @@ class RationalTest {
 
     @Test
     void testSub() {
-
+        Rational r1 = new Rational(3, 4);
+        Rational r2 = new Rational(1, 4);
+        Rational result = r1.sub(r2);
+        assertEquals("1/2", result.toString());
     }
 
     @Test
