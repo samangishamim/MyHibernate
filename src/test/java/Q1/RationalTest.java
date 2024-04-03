@@ -40,5 +40,7 @@ class RationalTest {
 
     @Test
     void testToFloatingPoint() {
+        Rational r = new Rational(1, 2);
+        assertEquals(0.5, r.toFloatingPoint());
     }
 }
