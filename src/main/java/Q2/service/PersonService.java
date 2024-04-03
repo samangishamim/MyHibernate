@@ -8,12 +8,12 @@ import java.util.List;
 public class PersonService {
     private final PersonRepository personRepository = new PersonRepository();
 
-    public void save(Person person) {
+    public void signUp(Person person) {
         personRepository.save(person);
     }
 
-    public void findById(Long id) {
-        personRepository.findById(id);
+    public Person findById(Long id) {
+       return personRepository.findById(id);
     }
 
     public List<Person> findAll() {
@@ -21,11 +21,15 @@ public class PersonService {
     }
 
     public void remove(Long id) {
-        Person person = new Person(id);
+        Person person=personRepository.findById(id);
         personRepository.remove(person);
     }
 
     public void update(Person person) {
         personRepository.update(person);
+    }
+
+    public  boolean contain(Long id){
+       return personRepository.contain(id);
     }
 }
